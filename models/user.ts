@@ -33,7 +33,7 @@ const UserSchema: Schema = new Schema({
 });
 
 // Update lastUpdated timestamp before saving
-UserSchema.pre('save', function(next) {
+UserSchema.pre('save', function(this: IUser, next) {
   if (this.isModified('profile')) {
     this.profile.lastUpdated = new Date();
   }
