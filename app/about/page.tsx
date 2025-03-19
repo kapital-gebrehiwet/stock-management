@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 function About() {
     return (
@@ -9,9 +10,11 @@ function About() {
                     Welcome to Selom Hotel, owned by Mulubrhan Gebrehiwet, a civil engineer in South Sudan, Juba. Our hotel provides a comfortable and luxurious experience, perfect for both business and leisure travelers.
                 </p>
             </div>
-            <img 
-                src="/image.png" // Ensure the path is correct as it points to public/image.png
+            <Image 
+                src="/image.png"
                 alt="Hotel" 
+                width={800}
+                height={600}
                 className="hotel-image" 
             />
             
