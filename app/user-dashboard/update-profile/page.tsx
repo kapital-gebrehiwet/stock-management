@@ -11,6 +11,15 @@ interface Profile {
   avatar: string;
 }
 
+interface ApiError {
+  response?: {
+    data?: {
+      message?: string;
+    };
+  };
+  message: string;
+}
+
 export default function UpdateProfile() {
   const [profile, setProfile] = useState<Profile>({
     fullName: '',
@@ -57,8 +66,9 @@ export default function UpdateProfile() {
 
       localStorage.setItem('userProfile', JSON.stringify(data.profile));
       setMessage('Profile updated successfully!');
-    } catch (error: any) {
-      setMessage(error.response?.data?.message || 'Failed to update profile.');
+    } catch (err: unknown) {
+      const error = err as ApiError;
+      setMessage(error.response?.data?.message || error.message || 'Failed to update profile.');
     }
   };
 

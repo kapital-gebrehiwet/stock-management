@@ -10,6 +10,13 @@ interface ApiError {
   stack?: string;
 }
 
+interface DecodedToken {
+  id: string;
+  role: string;
+  iat: number;
+  exp: number;
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   await dbConnect();
 
@@ -18,7 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const token = req.headers.authorization?.split(' ')[1];
       if (!token) return res.status(401).json({ message: 'Unauthorized: Missing token' });
 
-      const decoded: any = jwt.verify(token, JWT_SECRET);
+      const decoded = jwt.verify(token, JWT_SECRET) as DecodedToken;
       const { username, email } = req.body;
 
       if (!username || !email) return res.status(400).json({ message: 'Missing required fields' });

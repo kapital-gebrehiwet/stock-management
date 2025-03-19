@@ -12,6 +12,15 @@ interface IFormData {
   dateOfSell: string; // Format: YYYY-MM-DD
 }
 
+interface ApiError {
+  response?: {
+    data?: {
+      message?: string;
+    };
+  };
+  message: string;
+}
+
 const AddSell: React.FC = () => {
   const [formData, setFormData] = useState<IFormData>({
     items: '',
@@ -44,8 +53,9 @@ const AddSell: React.FC = () => {
       alert(response.data.message);
       setFormData({ items: '', quantity: '', unit: '', pricePerUnit: '', totalPrice: '', dateOfSell: '' });
       router.push('/'); // Redirect to the admin dashboard
-    } catch (error: any) {
-      alert(error.response?.data?.message || 'Error adding sale');
+    } catch (err: unknown) {
+      const error = err as ApiError;
+      alert(error.response?.data?.message || error.message || 'Error adding sale');
     }
   };
 

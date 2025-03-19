@@ -10,6 +10,15 @@ interface IFormData {
   category: string;
 }
 
+interface ApiError {
+  response?: {
+    data?: {
+      message?: string;
+    };
+  };
+  message: string;
+}
+
 const AddStock: React.FC = () => {
   const [formData, setFormData] = useState<IFormData>({
     name: '',
@@ -37,8 +46,9 @@ const AddStock: React.FC = () => {
       alert(response.data.message);
       setFormData({ name: '', quantity: '', price: '', category: '' });
       router.push('/'); // Redirect to the admin dashboard
-    } catch (error: any) {
-      alert(error.response?.data?.message || 'Error adding stock');
+    } catch (err: unknown) {
+      const error = err as ApiError;
+      alert(error.response?.data?.message || error.message || 'Error adding stock');
     }
   };
 
