@@ -4,6 +4,15 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation'; // Ensure your Next.js version supports this
 import axios from 'axios';
 
+interface ApiError {
+  response?: {
+    data?: {
+      message?: string;
+    };
+  };
+  message: string;
+}
+
 export default function SignIn() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -23,9 +32,10 @@ export default function SignIn() {
 
       // Redirect based on user role
       router.push(role === 'Admin' ? '/admin-dashboard' : '/user-dashboard');
-    } catch (error: any) {
+    } catch (err: unknown) {
+      const error = err as ApiError;
       console.error('Sign-in error:', error);
-      alert(error.response?.data?.message || 'Sign-In Failed');
+      alert(error.response?.data?.message || error.message || 'Sign-In Failed');
     }
   };
 
@@ -59,7 +69,7 @@ export default function SignIn() {
         Sign In
       </button>
       <p className="text-center mt-4">
-        Don't have an account?{' '}
+        Don&apos;t have an account?{' '}
         <span onClick={redirectToSignup} className="text-blue-500 hover:underline cursor-pointer">
           Sign Up
         </span>

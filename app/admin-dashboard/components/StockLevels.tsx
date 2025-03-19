@@ -20,8 +20,8 @@ export default function StockLevels() {
       try {
         const { data } = await axios.get('/api/stocks');
         setStocks(data);
-      } catch (error) {
-        alert('Failed to fetch stock data');
+      } catch {
+        // Handle error silently or show a generic error message
       } finally {
         setLoading(false);
       }
