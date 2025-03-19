@@ -21,7 +21,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    // Check if admin
     if (username === ADMIN_CREDENTIALS.username) {
       const isMatch = password === ADMIN_CREDENTIALS.password;
       if (!isMatch) return res.status(401).json({ message: 'Invalid credentials' });
@@ -40,11 +39,28 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(401).json({ message: 'Invalid credentials' });
 
-    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET as string, {
-      expiresIn: '1h',
-    });
+    const token = jwt.sign(
+      { 
+        id: user._id, 
+        role: user.role,
+        username: user.username,
+        email: user.email
+      }, 
+      process.env.JWT_SECRET as string,
+      { expiresIn: '1h' }
+    );
 
-    res.status(200).json({ message: 'Login successful', token, role: user.role });
+    res.status(200).json({ 
+      message: 'Login successful', 
+      token, 
+      role: user.role,
+      user: {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        profile: user.profile
+      }
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Internal server error' });

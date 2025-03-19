@@ -25,6 +25,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   Home
                 </Link>
               </li>
+              <li>
+                    <Link
+                      href="/about"
+                      className="text-white hover:bg-blue-700 px-3 py-2 rounded-md"
+                    >
+                       About
+                    </Link>
+                  </li>
               {!isAuthenticated && (
                 <>
                   <li>

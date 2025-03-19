@@ -17,5 +17,82 @@
 body {
   color: var(--foreground);
   background: var(--background);
+  
   font-family: Arial, Helvetica, sans-serif;
+}
+.about-container {
+  background-color:rgb(67, 39, 3);
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hotel-title {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.hotel-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.hotel-description {
+  font-size: 1.2rem;
+  color: #34495e;
+  line-height: 1.5;
+}
+.about-container {
+  text-align: center;
+  background-color: #f4f4f4; /* Light grey background */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  margin: 20px auto; /* Add some spacing */
+  max-width: 800px; /* Limit the width for better readability */
+}
+
+.hotel-title {
+  font-size: 2.5em;
+  color: #2c3e50; /* Darker text color */
+  margin-bottom: 15px;
+}
+
+.hotel-description {
+  font-size: 1.2em;
+  color: #34495e; /* Slightly lighter text color */
+  margin-bottom: 20px;
+  line-height: 1.5; /* Improves readability */
+}
+
+.hotel-image {
+  display: block;
+  margin: 0 auto;
+  width: 100%; /* Make it responsive */
+  max-width: 600px; /* Maximum width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10px; /* Slightly rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow around the image */
+}
+
+.video-container {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.video-title {
+  font-size: 1.8em;
+  color: #2980b9; /* Accent color for titles */
+  margin-bottom: 10px;
+}
+
+.video {
+  width: 100%; 
+  max-width: 500px; 
+  border-radius: 10px; 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow around the video */
 }

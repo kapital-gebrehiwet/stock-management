@@ -19,14 +19,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     await connectDB();
-    const decoded: any = jwt.verify(token, secretKey as string);
+    
+    // Verify the token
+    const decoded = jwt.verify(token, secretKey as string) as { id: string }; // Specify the type for decoded token
     const user = await User.findById(decoded.id).select('-password'); // Exclude the password field
+    
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
     res.status(200).json(user);
   } catch (err) {
+    console.error('Error verifying token or fetching user:', err); 
     res.status(401).json({ message: 'Invalid token' });
   }
 }

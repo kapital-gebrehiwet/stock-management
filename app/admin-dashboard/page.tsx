@@ -22,14 +22,15 @@ export default function AdminDashboard() {
               
             </Link>
           </li>
-          <li>
-            <Link href="/add-stock" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all">
-              Add Stock
-            </Link>
-          </li>
+
           <li>
           <Link href="/user-management" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all">
               view users
+            </Link>
+          </li>
+          <li>
+          <Link href="/admin-dashboard/sale-levels" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-all">
+              view sales
             </Link>
           </li>
         </ul>

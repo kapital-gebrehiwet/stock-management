@@ -36,7 +36,7 @@ const AddStock: React.FC = () => {
       });
       alert(response.data.message);
       setFormData({ name: '', quantity: '', price: '', category: '' });
-      router.push('/admin/dashboard'); // Redirect to the admin dashboard
+      router.push('/'); // Redirect to the admin dashboard
     } catch (error: any) {
       alert(error.response?.data?.message || 'Error adding stock');
     }
